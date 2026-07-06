@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForgeQA — Self-Hosted AI Test Generation</title>
+<meta name="description" content="ForgeQA turns plain-English goals into reviewable Playwright Python tests using local LLMs. Self-hosted, governed, your code.">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --panel: #ffffff;
+    --ink: #1b2233;
+    --muted: #6b7280;
+    --line: #d9dee8;
+    --blue: #2b6cff;
+    --blue-soft: #eaf0ff;
+    --green: #17936b;
+    --green-soft: #e7f6ef;
+    --amber: #d98a00;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .sheet { max-width: 1100px; margin: 0 auto; padding: 28px 24px 48px; }
+  .topbar { height: 5px; background: var(--blue); border-radius: 4px; margin-bottom: 20px; }
+  header.hd { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .brand .logo { font-size: 1.6rem; }
+  .brand .name { font-weight: 800; font-size: 1.5rem; letter-spacing: 0.5px; }
+  .pill { background: var(--blue-soft); color: var(--blue); font-weight: 700; font-size: 0.7rem;
+          letter-spacing: 1px; padding: 4px 10px; border-radius: 6px; border: 1px solid #cfdcff; }
+  .tag { color: var(--muted); font-size: 1rem; }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 700; font-size: 0.85rem;
+         padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+  .btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .banner { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--blue);
+            border-radius: 10px; padding: 18px 22px; margin: 20px 0 28px; }
+  .banner h1 { margin: 0 0 8px; font-size: 1.35rem; }
+  .banner p { margin: 0; color: var(--muted); font-size: 1.02rem; }
+  .diagram-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+                  padding: 16px; margin-bottom: 28px; text-align: center; }
+  .diagram-wrap img { max-width: 100%; height: auto; border-radius: 8px; }
+  .diagram-wrap .caption { color: var(--muted); font-size: 0.82rem; margin-top: 10px; }
+  .flow { display: grid; grid-template-columns: 1fr 36px 1.2fr 36px 1fr; gap: 0; align-items: stretch; margin-bottom: 24px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card h4 { margin: 0 0 4px; font-size: 0.68rem; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+  .card .big { font-weight: 800; font-size: 1.05rem; margin-bottom: 8px; }
+  .card ul { margin: 8px 0 0; padding-left: 16px; color: var(--muted); font-size: 0.82rem; }
+  .arrow { display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1.5rem; font-weight: 700; }
+  .engine { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 14px; }
+  .engine-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .engine-hd .t { font-size: 0.68rem; letter-spacing: 1px; color: var(--blue); font-weight: 800; }
+  .badge { background: var(--green-soft); color: var(--green); border: 1px solid #bfe6d5; border-radius: 6px;
+           font-size: 0.72rem; font-weight: 700; padding: 3px 9px; }
+  .stages { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stage { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: #fbfcfe; }
+  .stage h5 { margin: 0 0 2px; font-size: 0.66rem; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+  .stage .st-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 6px; }
+  .stage p { margin: 0; color: var(--muted); font-size: 0.8rem; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .pair .card { border-left: 4px solid var(--blue); }
+  .pair .card.alt { border-left-color: var(--amber); }
+  .foot { text-align: center; margin-top: 32px; color: var(--muted); font-size: 0.88rem; }
+  .foot .tagline { font-style: italic; font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+  @media (max-width: 800px) {
+    .flow, .pair { grid-template-columns: 1fr; }
+    .arrow { transform: rotate(90deg); padding: 8px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="topbar"></div>
+
+  <header class="hd">
+    <div class="brand">
+      <span class="logo">🔨</span>
+      <span class="name">FORGEQA</span>
+      <span class="pill">ARCHITECTURE</span>
+      <span class="tag">Self-hosted AI → Playwright Python tests</span>
+    </div>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/ramonacraft/forgeqa">GitHub</a>
+      <a class="btn" href="https://github.com/ramonacraft/testmcp">TestMCP ↗</a>
+    </div>
+  </header>
+
+  <div class="banner">
+    <h1>Plain English in. Reviewable Playwright code out.</h1>
+    <p>Governed LangGraph agents, local LLMs (LM Studio / Ollama), and code you own — nothing runs against your app until you say so.</p>
+  </div>
+
+  <div class="diagram-wrap">
+    <img src="forgeqa_architecture_watermarked.png" alt="ForgeQA architecture diagram"
+         onerror="this.style.display='none'; document.getElementById('fallback-flow').style.display='grid';">
+    <div class="caption">Phase 1 — test generation + human review (execution &amp; RAG on the roadmap)</div>
+  </div>
+
+  <div id="fallback-flow" class="flow" style="display:none;">
+    <div class="card">
+      <h4>INPUT</h4>
+      <div class="big">Streamlit dashboard</div>
+      <ul>
+        <li>Goal / scenario</li>
+        <li>Optional context (Jira, selectors)</li>
+        <li>Base URL</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="engine">
+      <div class="engine-hd">
+        <span class="t">LANGGRAPH AGENT</span>
+        <span class="badge">auditable nodes</span>
+      </div>
+      <div class="stages">
+        <div class="stage">
+          <h5>GENERATE</h5>
+          <div class="st-title">LLM writes test</div>
+          <p>pytest-playwright, expect(), role/label locators, no sleeps</p>
+        </div>
+        <div class="stage">
+          <h5>VALIDATE</h5>
+          <div class="st-title">Syntax gate</div>
+          <p>Strip markdown fences → ast.parse before you see it</p>
+        </div>
+      </div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="card">
+      <h4>OUTPUT</h4>
+      <div class="big">Playwright .py file</div>
+      <ul>
+        <li>Human review in UI</li>
+        <li>Save to generated_tests/</li>
+        <li>Commit to your repo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="card">
+      <h4>LOCAL LLM LAYER</h4>
+      <div class="big">LiteLLM → one code path</div>
+      <ul>
+        <li><b>Dev:</b> LM Studio @ localhost:1234</li>
+        <li><b>Deploy:</b> Ollama in Docker</li>
+        <li>Cloud fallback off by default</li>
+      </ul>
+    </div>
+    <div class="card alt">
+      <h4>PAIRS WITH TESTMCP</h4>
+      <div class="big">Plan → Code</div>
+      <ul>
+        <li><a href="https://github.com/ramonacraft/testmcp">TestMCP</a> predicts <em>what</em> to test from a PR</li>
+        <li>ForgeQA generates <em>how</em> to test it in Playwright</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="tagline">Your infra. Your models. Your test code.</div>
+    <p>Built by Ramona Bonitatis · Phase 1 MVP · <a href="https://github.com/ramonacraft/forgeqa">github.com/ramonacraft/forgeqa</a></p>
+  </div>
+</div>
+<script>if(!document.querySelector('.diagram-wrap img').complete) document.getElementById('fallback-flow').style.display='grid';</script>
+</body>
+</html>

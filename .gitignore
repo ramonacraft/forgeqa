@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Env / secrets
+.env
+
+# Playwright
+test-results/
+playwright-report/
+.playwright/
+
+# Generated output (keep the folder, ignore contents)
+generated_tests/*
+!generated_tests/.gitkeep
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local-only context (not for GitHub)
+forgeqa_context.txt
+CURSOR_SETUP_PROMPT.md

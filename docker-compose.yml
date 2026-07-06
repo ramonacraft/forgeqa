@@ -1,0 +1,43 @@
+# Customer deploy: one command, fully local. `docker compose up`.
+# Ships Ollama (local LLM) + the ForgeQA app. No cloud, no external calls.
+
+services:
+  # Local LLM server. OpenAI-compatible API on :11434.
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  # One-shot: pull the model on first boot so the app has something to talk to.
+  model-init:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    entrypoint: ["ollama", "pull", "qwen2.5:7b-instruct"]
+    restart: "no"
+
+  # The ForgeQA dashboard + agents.
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - LLM_MODE=ollama
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - OLLAMA_MODEL=qwen2.5:7b-instruct
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+volumes:
+  ollama_data:

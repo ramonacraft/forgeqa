@@ -1,0 +1,16 @@
+# Core agent stack
+langgraph>=0.2.0
+litellm>=1.44.0
+
+# UI
+streamlit>=1.36.0
+
+# Automation (output target + example tests)
+playwright>=1.45.0
+pytest>=8.0.0
+pytest-playwright>=0.5.0
+
+# Config
+python-dotenv>=1.0.0
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
