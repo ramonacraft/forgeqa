@@ -52,7 +52,7 @@ pytest tests/
 | Guide | Purpose |
 |-------|---------|
 | [docs/dev-setup.md](docs/dev-setup.md) | Local setup, LM Studio, troubleshooting |
-| [docs/learning-path.md](docs/learning-path.md) | Phase 1 → 5 curriculum |
+| [docs/learning-path.md](docs/learning-path.md) | Build phases roadmap |
 | [docs/rag-phase2-plan.md](docs/rag-phase2-plan.md) | RAG implementation plan |
 | [FORGEQA_ARCHITECTURE.md](FORGEQA_ARCHITECTURE.md) | Full build brief |
 

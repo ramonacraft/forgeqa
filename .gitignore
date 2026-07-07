@@ -23,6 +23,7 @@ generated_tests/*
 .vscode/
 .idea/
 
-# Local-only context (not for GitHub)
+# Local-only — Cursor rules, personal context (never push to GitHub)
+.cursor/
 forgeqa_context.txt
 CURSOR_SETUP_PROMPT.md

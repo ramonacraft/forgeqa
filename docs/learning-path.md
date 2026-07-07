@@ -1,6 +1,6 @@
-# ForgeQA — Learning Path
+# ForgeQA — Build Phases
 
-A step-by-step curriculum for building ForgeQA from Phase 1 through RAG. Designed for hands-on learning with Cursor as a pair-programming partner.
+Implementation roadmap from Phase 1 through RAG, execution, and enterprise hardening.
 
 ## Phase 1 — Generation + review ✅
 
@@ -73,7 +73,3 @@ TypeScript output option, K8s / air-gapped deployment patterns.
 | `forgeqa/llm.py` | LiteLLM gateway (local-first) |
 | `forgeqa/config.py` | Environment-driven settings |
 | `examples/test_saucedemo_login.py` | Gold-standard output style |
-
-## Private learning journal
-
-Personal session notes and reflections live **outside** this repo (local only). The public docs here are distilled reference material — not a chat transcript.
