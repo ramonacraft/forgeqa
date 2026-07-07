@@ -47,12 +47,21 @@ Dashboard at http://localhost:8501. First boot pulls the Ollama model automatica
 pytest tests/
 ```
 
+## Docs
+
+| Guide | Purpose |
+|-------|---------|
+| [docs/dev-setup.md](docs/dev-setup.md) | Local setup, LM Studio, troubleshooting |
+| [docs/learning-path.md](docs/learning-path.md) | Phase 1 → 5 curriculum |
+| [docs/rag-phase2-plan.md](docs/rag-phase2-plan.md) | RAG implementation plan |
+| [FORGEQA_ARCHITECTURE.md](FORGEQA_ARCHITECTURE.md) | Full build brief |
+
 ## Layout
 
 ```
 forgeqa/          Core package (config, LLM, LangGraph agent)
 app/              Streamlit dashboard
-docs/             GitHub Pages (architecture)
+docs/             GitHub Pages + guides
 examples/         Hand-written reference tests
 generated_tests/  Saved output from the UI
 tests/            Smoke tests (no network)
