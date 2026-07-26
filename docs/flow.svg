@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="260" viewBox="0 0 980 260" role="img">
+  <rect width="980" height="260" fill="#0f172a" rx="16"/>
+  <text x="120" y="34" fill="#94a3b8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" text-anchor="middle">1. Goal in</text>
+  <text x="360" y="34" fill="#94a3b8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" text-anchor="middle">2. Local LLM agent</text>
+  <text x="620" y="34" fill="#94a3b8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" text-anchor="middle">3. Validate</text>
+  <text x="850" y="34" fill="#94a3b8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" text-anchor="middle">4. Review</text>
+
+  <rect x="40" y="96" width="160" height="52" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="120" y="128" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700" text-anchor="middle">Plain-English goal</text>
+
+  <line x1="200" y1="122" x2="250" y2="122" stroke="#94a3b8" stroke-width="2.5"/>
+  <polygon points="250,122 238,116 238,128" fill="#94a3b8"/>
+
+  <rect x="260" y="70" width="180" height="44" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="350" y="98" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" text-anchor="middle">LangGraph generate</text>
+  <rect x="260" y="128" width="180" height="44" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="350" y="156" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" text-anchor="middle">LM Studio / Ollama</text>
+
+  <line x1="440" y1="122" x2="500" y2="122" stroke="#94a3b8" stroke-width="2.5"/>
+  <polygon points="500,122 488,116 488,128" fill="#94a3b8"/>
+
+  <rect x="510" y="96" width="160" height="52" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+  <text x="590" y="128" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700" text-anchor="middle">Syntax gate</text>
+
+  <line x1="670" y1="122" x2="730" y2="122" stroke="#94a3b8" stroke-width="2.5"/>
+  <polygon points="730,122 718,116 718,128" fill="#94a3b8"/>
+
+  <rect x="740" y="70" width="200" height="44" rx="12" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+  <text x="840" y="98" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" text-anchor="middle">Playwright Python</text>
+  <rect x="740" y="128" width="200" height="44" rx="12" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+  <text x="840" y="156" fill="#0f172a" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" text-anchor="middle">Streamlit dashboard</text>
+
+  <text x="120" y="230" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" text-anchor="middle">What to automate</text>
+  <text x="350" y="230" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" text-anchor="middle">Stays on your machine</text>
+  <text x="590" y="230" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" text-anchor="middle">Clean before review</text>
+  <text x="840" y="230" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" text-anchor="middle">Human saves tests</text>
+</svg>

@@ -1,10 +1,22 @@
-# ForgeQA
+# ⚒️ ForgeQA
 
 **Self-hosted AI QA tool.** A LangGraph agent turns a plain-English test goal into clean, reviewable **Playwright Python** test code, using a local LLM (LM Studio for dev, Ollama in Docker for deploy). Nothing leaves your machine unless you explicitly enable cloud fallback.
 
 **Architecture (shareable):** [ramonacraft.github.io/forgeqa](https://ramonacraft.github.io/forgeqa)
 
 **Pairs with [TestMCP](https://github.com/ramonacraft/testmcp)** — TestMCP predicts *what* to test from a GitHub PR; ForgeQA generates *how* to test it in Playwright.
+
+## How the flow works
+
+![How ForgeQA turns a goal into reviewable Playwright](docs/flow.png)
+
+| Step | Color | What it is |
+|------|-------|------------|
+| **1. Goal in** | Blue | Plain-English test goal |
+| **2. Local LLM agent** | Amber | LangGraph generate on LM Studio / Ollama |
+| **3. Validate** | Teal | Syntax gate before you see output |
+| **4. Review** | Green | Playwright Python + Streamlit dashboard |
+
 
 ## What it does today (Phase 1)
 
@@ -73,6 +85,13 @@ tests/            Smoke tests (no network)
 2. RAG over private repos / Jira / Confluence
 3. Optional execution + self-healing
 4. TypeScript output option
+
+## Notes / Privacy
+
+- **Published by** [Ramona Bonitatis](https://github.com/ramonacraft).
+- **Default: no secrets.** Local-first: LM Studio / Ollama. `.env.example` has no cloud keys by default (`CLOUD_FALLBACK_ENABLED=false`).
+- Do not commit `.env`, API keys, or private repo contents used for RAG experiments.
+- Nothing leaves your machine unless you explicitly enable cloud fallback.
 
 ## License
 
